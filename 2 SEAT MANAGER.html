@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Seat Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .seat {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 100px;
+            text-align: center;
+            cursor: pointer; /* add cursor pointer */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* add transition for animation */
+        }
+        .seat.booked {
+            background-color: rgb(243, 66, 66); /* change color to red when booked */
+            color: white;
+        }
+        .seat.not-booked {
+            background-color: rgb(48, 197, 48); /* change color to green when not booked */
+            color: white;
+        }
+        .seat:hover {
+            background-color: #575340; /* add hover effect */
+            color: antiquewhite;
+            transform: scale(1.1); /* add scale effect on hover */
+        }
+        .seat.fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .seat.fade-out {
+            animation: fadeOut 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader" class="loader"></div>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                Library Seat Management
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="website.html">
+                    Home
+                </a>
+                <a class="navbar-item" href="#">
+                    Documentation
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="#">
+                        More
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#">
+                            About
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Jobs
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="#">
+                            Report an issue
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <button class="button is-link" id="open-modal-button">Open Seat Modal</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="modal" id="seat-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Seat Information</p>
+                <button class="delete" aria-label="close" id="close-modal-button"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Seat Name</label>
+                    <div class="control">
+                        <input class="input" type="text" id="seat-name" placeholder="Enter seat name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Phone Number</label>
+                    <div class="control">
+                        <input class="input" type="text" id="phone-number" placeholder="Enter phone number">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Timing</label>
+                    <div class="control">
+                        <input class="input" type="time" id="timing" placeholder="Enter timing">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Aadhar Card Number</label>
+                    <div class="control">
+                        <input class="input" type="text" id="aadhar-number" placeholder="Enter Aadhar card number" maxlength="12" pattern="\d{12}" title="Aadhar number must be 12 digits">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Status</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="seat-status">
+                                <option value="booked" selected>Booked</option>
+                                <option value="medium">Medium</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field" id="sub-seat-field" style="display: none;">
+                    <label class="label">Sub Seat</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="sub-seat">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="save-seat-button">Save Seat</button>
+                <button class="button is-danger" id="cancel-seat-button">Cancel</button>
+                <button class="button is-danger" id="delete-seat-button">Delete</button>
+            </footer>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="title">Girls Section (1-28)</h1>
+        <div class="columns is-multiline is-desktop is-centered" id="girls-seat-container">
+            <!-- girls seats will be displayed here -->
+        </div>
+        <h1 class="title">Boys Section (29-150)</h1>
+        <div class="columns is-multiline is-desktop is-centered" id="boys-seat-container">
+            <!-- boys seats will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        let seats = JSON.parse(localStorage.getItem('seats')) || [];
+        let currentSeatIndex = -1;
+        let currentSubSeat = -1;
+
+        // create seats if not already created
+        if (seats.length === 0) {
+            for (let i = 0; i < 150; i++) {
+                seats.push({
+                    name: "",
+                    phoneNumber: "",
+                    timing: "",
+                    status: "not-booked",
+                    subSeats: []
+                });
+            }
+        }
+
+        // display seats
+        const girlsSeatContainer = document.getElementById("girls-seat-container");
+        const boysSeatContainer = document.getElementById("boys-seat-container");
+        updateSeatsDisplay();
+
+        function updateSeatsDisplay() {
+            girlsSeatContainer.innerHTML = "";
+            boysSeatContainer.innerHTML = "";
+            seats.forEach((seat, index) => {
+                if (seat.status === "medium" && seat.subSeats.length > 0) {
+                    const seatElement1 = document.createElement("div");
+                    seatElement1.classList.add("seat", "column", "is-one-fifth-desktop");
+                    if (seat.subSeats[0].status === "booked") {
+                        seatElement1.classList.add("booked");
+                    } else {
+                        seatElement1.classList.add("not-booked");
+                    }
+                    seatElement1.classList.add("fade-in");
+                    seatElement1.innerHTML = `Seat ${index + 1}-1`;
+                    seatElement1.addEventListener("click", () => {
+                        currentSeatIndex = index;
+                        currentSubSeat = 0;
+                        document.getElementById("seat-name").value = seat.subSeats[0].name;
+                        document.getElementById("phone-number").value = seat.subSeats[0].phoneNumber;
+                        document.getElementById("timing").value = seat.subSeats[0].timing;
+                        document.getElementById("seat-status").value = seat.subSeats[0].status;
+                        document.getElementById("aadhar-number").value = seat.subSeats[0].aadharNumber || '';
+                        document.getElementById("seat-modal").classList.add("is-active");
+                        document.getElementById("sub-seat-field").style.display = "none";
+                    });
+                    const seatElement2 = document.createElement("div");
+                    seatElement2.classList.add("seat", "column", "is-one-fifth-desktop");
+                    if (seat.subSeats[1].status === "booked") {
+                        seatElement2.classList.add("booked");
+                    } else {
+                        seatElement2.classList.add("not-booked");
+                    }
+                    seatElement2.classList.add("fade-in");
+                    seatElement2.innerHTML = `Seat ${index + 1}-2`;
+                    seatElement2.addEventListener("click", () => {
+                        currentSeatIndex = index;
+                        currentSubSeat = 1;
+                        document.getElementById("seat-name").value = seat.subSeats[1].name;
+                        document.getElementById("phone-number").value = seat.subSeats[1].phoneNumber;
+                        document.getElementById("timing").value = seat.subSeats[1].timing;
+                        document.getElementById("seat-status").value = seat.subSeats[1].status;
+                        document.getElementById("aadhar-number").value = seat.subSeats[1].aadharNumber || '';
+                        document.getElementById("seat-modal").classList.add("is-active");
+                        document.getElementById("sub-seat-field").style.display = "none";
+                    });
+                    if (index < 28) {
+                        girlsSeatContainer.appendChild(seatElement1);
+                        girlsSeatContainer.appendChild(seatElement2);
+                    } else {
+                        boysSeatContainer.appendChild(seatElement1);
+                        boysSeatContainer.appendChild(seatElement2);
+                    }
+                } else {
+                    const seatElement = document.createElement("div");
+                    seatElement.classList.add("seat", "column", "is-one-fifth-desktop");
+                    if (seat.status === "booked") {
+                        seatElement.classList.add("booked");
+                    } else {
+                        seatElement.classList.add("not-booked");
+                    }
+                    seatElement.classList.add("fade-in");
+                    seatElement.innerHTML = `Seat ${index + 1}`;
+                    seatElement.addEventListener("click", () => {
+                        currentSeatIndex = index;
+                        currentSubSeat = -1;
+                        document.getElementById("seat-name").value = seat.name;
+                        document.getElementById("phone-number").value = seat.phoneNumber;
+                        document.getElementById("timing").value = seat.timing;
+                        document.getElementById("seat-status").value = seat.status;
+                        document.getElementById("aadhar-number").value = seat.aadharNumber || '';
+                        document.getElementById("seat-modal").classList.add("is-active");
+                        if (seat.status === "medium") {
+                            document.getElementById("sub-seat-field").style.display = "block";
+                        } else {
+                            document.getElementById("sub-seat-field").style.display = "none";
+                        }
+                    });
+                    if (index < 28) {
+                        girlsSeatContainer.appendChild(seatElement);
+                    } else {
+                        boysSeatContainer.appendChild(seatElement);
+                    }
+                }
+            });
+        }
+
+        function saveSeatsToLocalStorage() {
+            localStorage.setItem('seats', JSON.stringify(seats));
+        }
+
+        function sendSeatInfoToFeesPage(seatInfo) {
+            const feesData = {
+                name: seatInfo.name,
+                phoneNumber: seatInfo.phoneNumber,
+                fee: seatInfo.fee || 0,
+                seatNumber: currentSeatIndex + 1,
+                feesDate: new Date().toLocaleDateString() // Set current date as fees date
+            };
+            const feesPage = window.open('/d:/Library servers/Mains/money manager.html');
+            feesPage.postMessage({ type: 'seatInfo', seatInfo: feesData }, '*');
+        }
+
+        function sendSeatInfoToMoneyManager(seatInfo) {
+            const moneyData = {
+                name: seatInfo.name,
+                phoneNumber: seatInfo.phoneNumber,
+                fee: seatInfo.fee || 0,
+                seatNumber: currentSeatIndex + 1,
+                feesDate: new Date().toLocaleDateString() // Set current date as fees date
+            };
+            const moneyPage = window.open('/d:/Library servers/Mains/money manager.html');
+            moneyPage.postMessage({ type: 'seatInfo', seatInfo: moneyData }, '*');
+        }
+
+        // save seat information
+        document.getElementById("save-seat-button").addEventListener("click", () => {
+            if (currentSeatIndex !== -1) {
+                let aadharNumber = document.getElementById("aadhar-number").value;
+                let seatInfo;
+                if (currentSubSeat !== -1) {
+                    seatInfo = seats[currentSeatIndex].subSeats[currentSubSeat];
+                    seatInfo.name = document.getElementById("seat-name").value;
+                    seatInfo.phoneNumber = document.getElementById("phone-number").value;
+                    seatInfo.timing = document.getElementById("timing").value;
+                    seatInfo.status = document.getElementById("seat-status").value;
+                    seatInfo.aadharNumber = aadharNumber;
+                } else {
+                    seatInfo = seats[currentSeatIndex];
+                    seatInfo.name = document.getElementById("seat-name").value;
+                    seatInfo.phoneNumber = document.getElementById("phone-number").value;
+                    seatInfo.timing = document.getElementById("timing").value;
+                    seatInfo.status = document.getElementById("seat-status").value;
+                    seatInfo.aadharNumber = aadharNumber;
+                    if (seatInfo.status === "medium") {
+                        if (seatInfo.subSeats.length < 2) {
+                            seatInfo.subSeats.push({
+                                name: "",
+                                phoneNumber: "",
+                                timing: "",
+                                status: "booked"
+                            });
+                            if (seatInfo.subSeats.length < 2) {
+                                seatInfo.subSeats.push({
+                                    name: "",
+                                    phoneNumber: "",
+                                    timing: "",
+                                    status: "booked"
+                                });
+                            }
+                        }
+                    } else {
+                        seatInfo.subSeats = [];
+                    }
+                }
+                updateSeatsDisplay();
+                saveSeatsToLocalStorage();
+                sendSeatInfoToFeesPage(seatInfo);
+                sendSeatInfoToMoneyManager(seatInfo); // Send data to money manager
+            }
+            document.getElementById("seat-modal").classList.remove("is-active");
+        });
+
+        // delete seat information
+        document.getElementById("delete-seat-button").addEventListener("click", () => {
+            if (currentSeatIndex !== -1) {
+                if (currentSubSeat !== -1) {
+                    seats[currentSeatIndex].subSeats[currentSubSeat] = {
+                        name: "",
+                        phoneNumber: "",
+                        timing: "",
+                        status: "not-booked"
+                    };
+                } else {
+                    seats[currentSeatIndex] = {
+                        name: "",
+                        phoneNumber: "",
+                        timing: "",
+                        status: "not-booked",
+                        subSeats: []
+                    };
+                    if (seats[currentSeatIndex].status === "medium") {
+                        seats[currentSeatIndex].status = "not-booked";
+                        seats[currentSeatIndex].name = `Seat ${currentSeatIndex + 1}-1`;
+                    }
+                }
+                updateSeatsDisplay();
+                saveSeatsToLocalStorage();
+            }
+            document.getElementById("seat-modal").classList.remove("is-active");
+        });
+
+        // open and close modal
+        document.getElementById("open-modal-button").addEventListener("click", () => {
+            showLoader();
+            setTimeout(() => {
+                hideLoader();
+                document.getElementById("seat-modal").classList.add("is-active");
+            }, 1000); // Simulate loading time
+        });
+
+        document.getElementById("close-modal-button").addEventListener("click", () => {
+            document.getElementById("seat-modal").classList.remove("is-active");
+        });
+
+        document.getElementById("cancel-seat-button").addEventListener("click", () => {
+            document.getElementById("seat-modal").classList.remove("is-active");
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const loader = document.getElementById("loader");
+            loader.classList.add("hidden");
+        });
+
+        function showLoader() {
+            const loader = document.getElementById("loader");
+            loader.classList.remove("hidden");
+        }
+
+        function hideLoader() {
+            const loader = document.getElementById("loader");
+            loader.classList.add("hidden");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruv Library</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .header {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e,white, #23a6d5, #23d5ab,rgb(71, 71, 216));
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .hero {
+            padding: 100px;
+            text-align: center;
+            /* background-color: rgba(255, 255, 255, 0.8); */
+            height: 605px;
+        }
+        .heading{
+            padding: 50px;
+        }
+        .featured-books {
+            padding: 50px;
+            /* background-color: rgba(255, 255, 255, 0.8); */
+        }
+        .book-card {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .book-card.book1{
+           font-size:55px;
+
+        }
+        .about-us {
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .book-catalog {
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .modal-content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background:linear-gradient(-45deg, #333,#000000);
+            border-radius: 15px;
+        }
+        .navbar-expand-lg .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .carousel {
+            position: relative;
+        }
+        .carousel-control-prev, .carousel-control-next {
+            background-color: transparent;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            opacity: 0.2;
+            transition: opacity 0.2s ease;
+            border: none;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #333;
+        }
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.1);
+            }
+            100% {
+                transform: translateY(-50%) scale(1);
+            }
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dhruv Library</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-nav">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="website.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="heading">
+        <h1>About Us :</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate, tempore eveniet temporibus aliquid tenetur consequuntur nulla sit eligendi ea, fugiat veritatis quod ex, repudiandae dicta possimus qui id! Incidunt iste nam, ipsa facere, unde non sint hic rerum veritatis, voluptatem ex reiciendis laborum omnis ad necessitatibus cum exercitationem corporis tempore temporibus eveniet nisi dolorem! Dolor alias amet iure labore quae perspiciatis accusantium ipsa voluptate maiores facilis! Facere, nam. Placeat sint pariatur voluptate voluptatibus a dignissimos neque totam.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate eum fugiat ipsam vero unde quos ipsum optio sunt, rem quas distinctio nihil voluptas officia sit quae qui magnam dolores numquam.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum animi similique ullam dolorem laudantium a repellat iure perferendis ab facilis maiores deserunt qui, nesciunt distinctio ducimus quod recusandae vero et quam velit, aut quis placeat. Facere, commodi porro tempora saepe quae atque ratione minus assumenda beatae eum voluptatem distinctio cum eos doloremque culpa odio illo molestias a ipsam ex. At consequatur aliquam porro in iste illum quasi reiciendis, inventore aliquid facere numquam voluptates nostrum deserunt quo vitae, eius amet ex atque! Natus molestiae dolorem sed, ipsum pariatur id!
+
+
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, quaerat a quia officia id culpa expedita et blanditiis. Laudantium, repudiandae pariatur. Nobis ratione enim error repellat, alias ducimus minima laborum totam, rerum ipsa deserunt nisi blanditiis vitae commodi veritatis vel officiis magni architecto numquam dolorum maxime accusamus. Vero qui quod vel culpa asperiores rerum incidunt, sequi sed laboriosam impedit iusto nobis hic perspiciatis placeat? Quo autem officia suscipit veritatis voluptatum. Dolore eum, fugiat itaque molestiae cupiditate delectus, nobis quo necessitatibus deleniti doloremque et omnis dignissimos reprehenderit adipisci expedita temporibus dolorum officia qui cum pariatur veritatis enim, ea facilis. Tempora?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea ab veritatis iste commodi voluptatum vel eveniet atque? Perspiciatis fugit eveniet iusto maiores molestiae perferendis ab repudiandae assumenda, esse, quam odit reiciendis excepturi facilis voluptatem totam minus ullam nemo culpa ea adipisci? Officia error tempore, quasi id sunt dolore deleniti repellat aut ratione officiis praesentium repellendus alias facilis qui assumenda, a aspernatur corporis iusto fuga itaque blanditiis! Iusto non modi tempore architecto illo distinctio saepe adipisci rerum provident incidunt molestiae earum dolore veritatis fugit odit ad, alias accusamus, temporibus quasi quos placeat voluptatibus id? Reprehenderit voluptates aperiam aspernatur laboriosam tempora doloremque sit soluta ea quas, consequuntur qui, fugit rerum ipsam aut provident autem numquam omnis, fugiat nam? Odit quam possimus ducimus, animi, inventore aliquam labore similique id mollitia in esse nulla impedit expedita provident molestiae totam perspiciatis dolorem nihil nemo ex. Minus praesentium expedita, iusto provident perspiciatis optio in? Corporis magni nisi, amet obcaecati tempore eius expedita impedit autem sequi culpa quibusdam vel ipsam exercitationem esse consectetur dolore. Consequatur obcaecati iure quo nisi totam dolorum? Consectetur laboriosam esse illo provident officiis accusantium nemo, nulla quidem autem dolores possimus, dolorem eligendi saepe laborum sunt aut alias. Eaque officiis ab aliquam quidem a ullam atque iusto repellendus excepturi, ratione sequi voluptate similique doloribus temporibus harum quae accusamus quasi inventore vel quis? Modi voluptates totam architecto temporibus voluptatibus, officia enim earum perspiciatis atque maiores cum tempore qui animi. Nihil explicabo asperiores harum magnam minus saepe dolorum expedita iusto ullam necessitatibus libero corporis aperiam, corrupti ratione neque quisquam ipsam inventore laudantium deleniti officiis quasi? Earum, deleniti neque similique minima eum autem facilis rerum sed soluta reprehenderit corporis velit. Dolores cum sequi ipsam quibusdam tenetur sint vel nemo mollitia eos, tempore dolor minima ex harum laboriosam animi reprehenderit provident temporibus rem consequuntur libero laborum. Consectetur dolorum quas quaerat ad omnis perferendis iusto est temporibus rem. Reiciendis reprehenderit veritatis, dicta possimus aperiam, aliquid consequatur optio quasi nam aliquam mollitia id et deserunt error. Cum at culpa, temporibus, repellat quis quas optio mollitia labore, minus quae officiis. Ipsum at nulla ullam nisi vero impedit ea facilis quas qui cupiditate vitae similique mollitia ratione reiciendis voluptas exercitationem facere ut illo, soluta atque quibusdam! Ad at veritatis sunt commodi delectus beatae soluta ea ipsam quod expedita architecto fugiat quam voluptate vitae iure in illum, eum officiis! Recusandae debitis aliquam, fuga maiores maxime sequi sint consectetur doloribus. Sed cum distinctio praesentium pariatur rerum id repellendus molestias. Cupiditate debitis nostrum quaerat fugit placeat, itaque sit neque natus fuga nobis deleniti enim eaque, totam vitae eius sed nesciunt pariatur. Sed pariatur quo, veritatis, perspiciatis alias provident repellat minima quae eum id aliquam quam dolorem, nam in. Nisi, eaque nulla itaque similique quis debitis recusandae perferendis molestias a maxime rerum, laboriosam minima exercitationem fuga excepturi blanditiis. Accusamus debitis eveniet eum ab deserunt voluptas animi, a dicta qui consectetur maxime impedit? Debitis laboriosam praesentium eum, perferendis possimus nemo suscipit dignissimos consectetur, minus expedita magni quasi placeat! Est unde quis odio quod, repellat, animi alias quo ab suscipit maxime ad blanditiis! Rerum, dignissimos ullam consectetur vero quas modi aut ea nesciunt quod quia minus cupiditate architecto, consequatur veniam tenetur, accusamus sequi. Aspernatur nostrum a impedit quae reiciendis doloremque ipsa. Numquam enim magnam perferendis commodi laudantium corporis possimus magni veritatis in provident aspernatur reiciendis voluptates reprehenderit fugit optio repellendus, totam distinctio est dicta amet repudiandae. Eius facilis distinctio amet beatae ad illum ipsam at provident. Aperiam fuga, laudantium neque delectus fugit deleniti aliquid rerum quisquam necessitatibus debitis corrupti officia magni reprehenderit sapiente obcaecati minima libero perferendis reiciendis possimus culpa, totam accusantium? Soluta sit eos dolorum repellat modi eligendi voluptatem laudantium blanditiis, expedita, est nostrum veritatis. Laudantium aspernatur non culpa repudiandae, officiis eligendi. Magnam, quod. Modi aliquid quia aperiam itaque corrupti blanditiis laudantium ad, placeat eaque, officiis debitis nesciunt, harum quasi dicta enim repellendus dolorum omnis! Dolorum officiis magni, iusto saepe consequuntur cumque, eveniet vitae, quia aliquid facilis maxime! Expedita, sapiente neque alias ratione dignissimos quibusdam enim, soluta libero pariatur numquam modi ut? In quasi eaque, esse deleniti dicta repellat ea nesciunt, ex quos error labore ut aperiam eos eveniet. Hic omnis exercitationem optio saepe nemo aut aspernatur debitis at, magnam sequi sunt quas numquam ratione iste facere minima repellat, obcaecati voluptatem libero recusandae in? Asperiores consectetur qui vero soluta aspernatur voluptates dolorum enim harum perferendis dicta. Dicta enim quis quos officiis, autem temporibus dignissimos explicabo, cupiditate quaerat amet, neque quas animi rem similique ipsum molestias optio porro repellendus voluptas deserunt error! Repellat molestiae natus qui voluptate ab iure alias vero perferendis tenetur quos cum accusantium, eius quae sunt. Non fuga esse qui quod tempore quo tempora soluta animi expedita doloremque. Doloribus nisi earum autem placeat possimus amet optio. Molestiae tempore beatae animi expedita necessitatibus ullam hic facere iste voluptas laboriosam delectus, minus totam, quisquam rem nobis quas reprehenderit quibusdam quis veritatis? Quaerat iusto dolore nesciunt non molestiae esse velit harum? Fuga iure nam vel, suscipit iusto, earum corporis quae cum ipsam cupiditate quidem debitis incidunt repudiandae reprehenderit perspiciatis excepturi tempore labore atque corrupti voluptas? Expedita odio iure debitis repellat iusto, impedit pariatur, eveniet unde repudiandae est vel molestiae sint aliquam a, obcaecati laborum dicta doloremque itaque laboriosam veniam. Dolores blanditiis expedita nemo mollitia placeat at saepe nobis beatae deserunt cumque ipsa, maxime a totam perferendis eveniet libero quod doloremque deleniti id aperiam iure vitae velit quaerat perspiciatis. Delectus consectetur atque repudiandae! Odio adipisci repudiandae tenetur ipsam voluptatibus atque consequatur. Hic ullam aut ad architecto commodi vel, autem quibusdam atque tempore sint labore vitae numquam nobis sapiente et nemo. Officia numquam saepe voluptatibus impedit delectus aliquam debitis dolores facere ipsam? Rerum itaque nihil ipsam maiores, atque blanditiis at molestias harum eum recusandae illum laudantium non, beatae hic. Et possimus, veniam quis nam sit sequi asperiores deleniti eaque ab nisi, assumenda voluptates impedit vel in obcaecati rem. Quas quasi, libero molestiae modi, accusantium at placeat et blanditiis nobis officia ducimus ipsum laborum, necessitatibus pariatur? Animi, facere tempora veniam ea sequi placeat dolore, et asperiores voluptatibus quibusdam necessitatibus, amet odit.
+        </p>
+
+    <div class="modal fade" id="searchResultsModal" tabindex="-1" role="dialog" aria-labelledby="searchResultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="search-results">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Dhruv Library</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" target="_blank">Facebook</a></li>
+            <li class="list-inline-item"><a href="#" target="_blank">Twitter</a></li>
+            <li class="list-inline-item"><a href="#" target="_blank">Instagram</a></li>
+        </ul>
+        <p>Contact us: <a href="mailto:info@dhruvlibrary.com">info@dhruvlibrary.com</a></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search-nav').on('input', function() {
+                var search = $(this).val().toLowerCase();
+                if (search !== '') {
+                    $('#searchResultsModal').modal('show');
+                    $('#search-results').html('');
+                    $('.book-card').each(function() {
+                        var bookTitle = $(this).find('h5').text().toLowerCase();
+                        var bookAuthor = $(this).find('p').text().toLowerCase();
+                        if (bookTitle.includes(search) || bookAuthor.includes(search)) {
+                            $('#search-results').append('<p>' + $(this).find('h5').text() + ' by ' + $(this).find('p').text() + '</p>');
+                        }
+                    });
+                    $('#book-list li').each(function() {
+                        var bookTitle = $(this).text().toLowerCase();
+                        if (bookTitle.includes(search)) {
+                            $('#search-results').append('<p>' + $(this).text() + '</p>');
+                        }
+                    });
+                } else {
+                    $('#searchResultsModal').modal('hide');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
